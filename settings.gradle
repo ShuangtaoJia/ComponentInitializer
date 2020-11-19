@@ -1,0 +1,10 @@
+include ':demo:module4'
+include ':demo:module3'
+include ':demo:module2'
+include ':demo:module1'
+include ':component-initializer-gradle-plugin'
+include ':component-initializer-annotation'
+include ':component-initializer-compiler'
+include ':component-initializer-api'
+include ':demo:app'
+rootProject.name = "ComponentInitializer"

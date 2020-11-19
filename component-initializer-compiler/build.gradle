@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+
+dependencies {
+    //todo 修改成 maven资源
+    implementation project(':component-initializer-annotation')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
+    compileOnly 'com.google.auto.service:auto-service-annotations:1.0-rc7'
+
+    implementation 'com.squareup:javapoet:1.12.1'
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
