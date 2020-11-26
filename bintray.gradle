@@ -1,0 +1,40 @@
+apply plugin: 'com.jfrog.bintray'
+
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['maven']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        version {
+            name = project.ext.version
+        }
+    }
+}
+
+
+
+/*上传Bintray命令
+
+对于非Android library 类型：
+
+在对应module的目录下 运行命令：
+../gradlew clean build generatePomFileForMavenPublication bintrayUpload
+
+对于Android library 类型：
+使用上述方式会失败，具体原因还不知道
+
+需要一个一个来运行：（可以使用命令，也可以点右边的task列表）
+clean
+assembleRelease （task列表里在other目录下）
+androidSourcesJar
+generatePomFileForMavenPublication
+bintrayUpload
+
+*/

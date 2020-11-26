@@ -1,61 +1,29 @@
 apply plugin: 'groovy'
-apply plugin: 'maven-publish'
+
+ext {
+    groupId = 'com.jst.componentinitializer'
+    artifactId = 'gradle-plugin'
+    version = '1.0.0'
+
+    maven_component = components.java
+
+    //Bintray 网站上的 package name
+    bintrayName = 'component-initializer-gradle-plugin'
+}
+
+java {
+//    withJavadocJar()
+    withSourcesJar()
+}
 
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-}
 
-dependencies {
     implementation 'com.billy.android:autoregister:1.4.2'
-    implementation 'com.android.tools.build:gradle:4.0.0'
+    implementation 'com.android.tools.build:gradle:3.0.1'
 }
 
-afterEvaluate {
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.jst.componentinitializer'
-            artifactId = 'componentinitializer'
-            version = '1.0.0-SNAPSHOT'
+apply from: '../maven-publish.gradle'
+apply from: '../bintray.gradle'
 
-            from components.java
-
-            pom {
-                name = 'ComponentInitializer'
-                description = 'A framework for initialize component in Android componentization framework'
-                url = '//todo siteUrl'
-//                properties = [
-//                        myProp: "value",
-//                        "prop.with.dots": "anotherValue"
-//                ]
-                licenses {
-                    license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'jst'
-                        name = 'Shuangtao Jia'
-                        email = 'jiashuangtao@gmail.com'
-                    }
-                }
-                scm {
-                    connection = 'gitUrl'
-                    developerConnection = 'gitUrl'
-                    url = 'siteUrl'
-                }
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            url = "/Users/JST/repo"
-        }
-    }
-}
-
-}

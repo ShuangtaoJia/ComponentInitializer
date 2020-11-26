@@ -23,8 +23,9 @@ android {
 }
 
 dependencies {
-    //todo 修改成 maven资源
-    implementation project(':component-initializer-api')
+    implementation 'com.jst.componentinitializer:componentinitializer:1.0.0'
+    //调试时可以使用源码依赖
+//    implementation project(':component-initializer-api')
 
     implementation project(':demo:module1')
     implementation project(':demo:module2')

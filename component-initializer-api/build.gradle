@@ -1,15 +1,26 @@
 apply plugin: 'com.android.library'
 
+ext {
+    groupId = 'com.jst.componentinitializer'
+    artifactId = 'componentinitializer'
+    version = '1.0.0'
+
+    //Because the components are created only during the afterEvaluate phase  （https://developer.android.com/studio/build/maven-publish-plugin）
+    afterEvaluate{
+        maven_component = components.release
+    }
+
+    //Bintray 网站上的 package name
+    bintrayName = 'component-initializer-api'
+}
+
 android {
     compileSdkVersion 30
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -21,8 +32,14 @@ android {
     }
 }
 
+
 dependencies {
-    //todo 修改成 maven资源
-    api project(':component-initializer-annotation')
+    api 'com.jst.componentinitializer:annotation:1.0.0'
+
+    //调试时可以使用源码依赖
+//    api project(':component-initializer-annotation')
 
 }
+
+apply from: '../maven-publish.gradle'
+apply from: '../bintray.gradle'

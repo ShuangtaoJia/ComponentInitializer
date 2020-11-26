@@ -1,10 +1,25 @@
 apply plugin: 'java-library'
 
-dependencies {
-    //todo 修改成 maven资源
-    implementation project(':component-initializer-annotation')
+ext {
+    groupId = 'com.jst.componentinitializer'
+    artifactId = 'compiler'
+    version = '1.0.0'
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    maven_component = components.java
+
+    //Bintray 网站上的 package name
+    bintrayName = 'component-initializer-compiler'
+}
+
+java {
+//    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    implementation 'com.jst.componentinitializer:annotation:1.0.0'
+    //调试时可以使用源码依赖
+//    implementation project(':component-initializer-annotation')
 
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
     compileOnly 'com.google.auto.service:auto-service-annotations:1.0-rc7'
@@ -12,5 +27,8 @@ dependencies {
     implementation 'com.squareup:javapoet:1.12.1'
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+apply from: '../maven-publish.gradle'
+apply from: '../bintray.gradle'

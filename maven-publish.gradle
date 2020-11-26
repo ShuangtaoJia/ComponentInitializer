@@ -1,0 +1,69 @@
+apply plugin: 'maven-publish'
+
+//在调试时可以使用本地maven，非常方便
+def useLocalMaven = false
+
+//上传jcenter时必须要求有源码
+if (project.hasProperty("android")) { // Android libraries
+    task androidSourcesJar(type: Jar) {
+        archiveClassifier.set('sources')
+        from android.sourceSets.main.java.srcDirs
+    }
+}
+
+
+//之所以放在afterEvaluate方法里是因为上传 AAR library 时要求的 https://developer.android.com/studio/build/maven-publish-plugin
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = project.ext.groupId
+                artifactId = project.ext.artifactId
+                version = project.ext.version
+
+                from project.ext.maven_component
+
+                //上传jcenter时必须要求有源码
+                if (project.hasProperty("android")) { // Android libraries
+                    artifact androidSourcesJar
+                }
+
+                pom {
+                    name = 'ComponentInitializer'
+                    description = 'A framework for initialize component in Android componentization framework'
+                    url = siteUrl
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'jst'
+                            name = 'Shuangtao Jia'
+                            email = 'jiashuangtao@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = gitUrl
+                        developerConnection = gitUrl
+                        url = siteUrl
+                    }
+                }
+            }
+        }
+
+        if(useLocalMaven){
+            repositories {
+                maven {
+                    //将该地址改为你的本地目录，就可以使用本地maven
+                    url = "/Users/JST/repo"
+                }
+            }
+        }
+
+    }
+
+}

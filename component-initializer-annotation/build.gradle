@@ -1,8 +1,26 @@
 apply plugin: 'java-library'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+ext {
+    groupId = 'com.jst.componentinitializer'
+    artifactId = 'annotation'
+    version = '1.0.0'
+
+    maven_component = components.java
+
+    //Bintray 网站上的 package name
+    bintrayName = 'component-initializer-annotation'
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+java {
+//    withJavadocJar()
+    withSourcesJar()
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+apply from: '../maven-publish.gradle'
+apply from: '../bintray.gradle'
