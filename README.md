@@ -193,7 +193,7 @@ public class MyApplication extends Application {
 在编译期，使用annotationProcessor来处理@Component注解，自动生成.java类
 
 - #### 使用Transform API
-使用Transform API 自动添加注册代码到ComponentInitializer类中，这样就可以省去用户手动注册Component的麻烦。其中用到了AutoRegister的能力。
+在打包Dex文件之前,使用Transform API 修改.class文件，自动添加注册代码到ComponentInitializer.class中，这样就可以省去用户手动注册Component的麻烦。其中用到了[AutoRegister](https://github.com/luckybilly/AutoRegister)的能力。
 （ARouter也用了AutoRegister）
 
 - #### 使用有向无环图的拓扑排序算法来生成具有依赖关系的component的初始化顺序
