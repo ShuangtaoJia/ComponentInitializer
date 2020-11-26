@@ -1,7 +1,7 @@
 # Component Initializer（组件初始化器）
  在Android组件化架构中用于各个组件在Application启动时进行初始化操作的框架
 ## 组件初始化的各个方案对比
-组件初始化的各个方案对比
+[组件初始化的各个方案对比](https://github.com/ShuangtaoJia/ComponentInitializer/blob/main/README.md#%E7%BB%84%E4%BB%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%90%84%E4%B8%AA%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94-1)
 ## 为什么要使用Component Initializer
 #### 1. 使用注解来标记Component类
 
@@ -147,6 +147,25 @@ public class MyApplication extends Application {
 }
 ```
 
+## Debug模式
+debug模式下在调用各Component的init方法之前会输出日志，用户可以通过日志查看各Component的初始化情况。tag 为 ComponentInitializer.LOG_TAG
+
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image3.png)
+
+通过在ComponentInitializer.initComponents()方法之前调用ComponentInitializer.setDebug(true)的方式可以打开debug模式
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ComponentInitializer.setDebug(true);
+        ComponentInitializer.initComponents(this);
+    }
+}
+```
+
+
 ## @Component注解dependencies参数配置异常检测
 对于配置了dependencies参数的场景会存在一些异常情况。对于所有的异常情况，该框架在执行ComponentInitializer.initComponents()方法时都会进行检测，
 并且以IllegalArgumentException异常的形式进行抛出，并且会提示给用户异常原因所在的具体的类，方便用户定位问题。
@@ -154,13 +173,20 @@ public class MyApplication extends Application {
 - #### 异常情况1：dependencies存在循环依赖
 例如：ComponentA 依赖 ComponentB，ComponentB 依赖 ComponentC ,ComponentC 依赖 ComponentA，则存在循环依赖
 
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image4.png)
+
 - #### 异常情况2：dependencies配置的component name 不存在
 比如，被依赖的组件没有配置component name，或者配置的component name与你声明的不匹配
 
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image5.png)
+
 - #### 异常情况3：不同的@Component 配置了相同的 component name 
+
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image6.png)
 
 - #### 异常情况4：dependencies配置的component name 是它自己
 
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image7.png)
  
 ## 该框架所用到的关键技术
 - #### 自定义annotationProcessor
@@ -175,6 +201,14 @@ public class MyApplication extends Application {
 ## 原理解析
 详细的原理解析 请参考 Component Initializer原理解析
 
+## Demo
+直接clone该项目可以直接编译运行，在demo文件夹下有用于演示的demo程序  
+
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image1.png)
+
+用户可以通过修改组件module中的@Component注解的dependencies配置来通过log查看各Component的初始化顺序  
+
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/image2.png)
 
 ## 组件初始化的各个方案对比
 如果组件有一些功能需要在Application启动时进行初始化，我们可以如何来实现呢？
