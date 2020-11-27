@@ -82,7 +82,7 @@ dependencies {
     annotationProcessor 'com.jst.componentinitializer:compiler:1.0.0'
 }
 ```
-Application类所在moudule（一般为App moudule）
+Application类所在module（一般为App module）
 
 ```gradle
 dependencies {
@@ -199,7 +199,7 @@ public class MyApplication extends Application {
 - #### 使用有向无环图的拓扑排序算法来生成具有依赖关系的component的初始化顺序
 
 ## 原理解析
-详细的原理解析 请参考 Component Initializer原理解析
+详细的原理解析 请参考 [Component Initializer原理解析](https://blog.csdn.net/taotao110120119/article/details/110231007)
 
 ## Demo
 直接clone该项目可以直接编译运行，在demo文件夹下有用于演示的demo程序  
