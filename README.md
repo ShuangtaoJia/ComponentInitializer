@@ -1,5 +1,12 @@
 # Component Initializer（组件初始化器）
 Android组件化架构中用于各个组件在Application启动时进行初始化操作的框架
+#### 最新版本
+
+模块|componentinitializer|compiler|gradle-plugin
+---|---|---|---
+最新版本|[ ![Download](https://api.bintray.com/packages/jiashuangtao/maven/component-initializer-api/images/download.svg)](https://bintray.com/jiashuangtao/maven/component-initializer-api/_latestVersion)|[ ![Download](https://api.bintray.com/packages/jiashuangtao/maven/component-initializer-compiler/images/download.svg)](https://bintray.com/jiashuangtao/maven/component-initializer-compiler/_latestVersion)|[ ![Download](https://api.bintray.com/packages/jiashuangtao/maven/component-initializer-gradle-plugin/images/download.svg)](https://bintray.com/jiashuangtao/maven/component-initializer-gradle-plugin/_latestVersion)
+
+
 ## 组件初始化的各个方案对比
 [组件初始化的各个方案对比](https://github.com/ShuangtaoJia/ComponentInitializer/blob/main/README.md#%E7%BB%84%E4%BB%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%90%84%E4%B8%AA%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94-1)
 ## 为什么要使用Component Initializer
@@ -62,7 +69,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.jst.componentinitializer:gradle-plugin:1.0.0"
+        classpath "com.jst.componentinitializer:gradle-plugin:1.0.1"
     }
 }
 ```
