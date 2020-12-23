@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -26,8 +29,11 @@ dependencies {
     //调试时可以使用源码依赖
 //    implementation project(':component-initializer-api')
 
-    annotationProcessor 'com.jst.componentinitializer:compiler:1.0.0'
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    kapt 'com.jst.componentinitializer:compiler:1.0.0'
     //调试时可以使用源码依赖
-//    annotationProcessor project(':component-initializer-compiler')
+//    kapt project(':component-initializer-compiler')
 
 }

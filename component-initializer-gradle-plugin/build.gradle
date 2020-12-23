@@ -3,7 +3,7 @@ apply plugin: 'groovy'
 ext {
     groupId = 'com.jst.componentinitializer'
     artifactId = 'gradle-plugin'
-    version = '1.0.0'
+    version = '1.0.1'
 
     maven_component = components.java
 
@@ -20,8 +20,7 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    implementation 'com.billy.android:autoregister:1.4.2'
-    implementation 'com.android.tools.build:gradle:3.0.1'
+    implementation 'com.android.tools.build:gradle:3.6.0'
 }
 
 apply from: '../maven-publish.gradle'

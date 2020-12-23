@@ -2,8 +2,8 @@ package com.jst.compinit.gradle.plugin
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
-import com.billy.android.register.AutoRegisterConfig
-import com.billy.android.register.RegisterTransform
+import com.billy.android.register1.AutoRegisterConfig
+import com.billy.android.register1.RegisterTransform
 import org.gradle.api.Project;
 
 class Plugin implements org.gradle.api.Plugin<Project> {
