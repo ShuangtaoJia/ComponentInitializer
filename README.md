@@ -262,4 +262,4 @@ new Component3().init();
 
 QQ 交流群
 
-![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/qq.png)
+<img width="200" height="200" src="https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/qq.png"/>
