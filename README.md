@@ -258,3 +258,8 @@ new Component3().init();
 1. 需要在组件module中增加一个配置文件来配置Component类的完整类名，这种配置方式并不方便
 2. 通过反射来初始化Component类，性能较低
 
+## 其他
+
+QQ 交流群
+
+![image](https://raw.githubusercontent.com/ShuangtaoJia/ComponentInitializer/main/other/qq.png)
